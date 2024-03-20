@@ -1,44 +1,39 @@
-#Justin Wild 
+def encode(password):
+    return ''.join(str((int(digit) + 3) % 10) for digit in password)
 
-end = False
 
-while not end:
-    print("Menu")
-    print("-------------")
-    print("1. Encode")
-    print("2. Decode")
-    print('3. Quit')
+def decode(encoded_password):
+    return ''.join(str((int(digit) - 3) % 10) for digit in encoded_password)
 
-    try:
-        choice = int(input("Please enter an option: "))
-    except ValueError:
-        print("Please enter a valid integer option.")
-        continue
 
-    if choice == 1:
-        password = input("Please enter your password to encode: ")
-        print("Your password has been encoded and stored!")
-        def encode_password(password):
-            encoded = ''.join(str((int(digit) + 3) % 10) for digit in password)
-            return encoded
+def main():
+    stored_encoded_password = ''
+    while True:
+        print("\nMenu\n-------------\n1. Encode\n2. Decode\n3. Quit")
+        choice = input("Please enter an option: ")
 
-    elif choice == 2:
-        error=False
-        while error==False:
-            user_input = password
-            if user_input.isdigit() and len(user_input) == 8:
-                break
+        if choice == '1':
+            password = input("Please enter your password to encode: ")
+            if len(password) == 8 and password.isdigit():
+                stored_encoded_password = encode(password)
+                print("Your password has been encoded and stored!")
             else:
-                print("Invalid input. Make sure your password is 8 digits long.")
-                error=True
-                
-        if error==False:        
-            encoded_password = encode_password(user_input)
-            print(f"The original password is {user_input}.")
-            print(f"The encoded password is {encoded_password}.")
+                print("Invalid input. Please ensure your password is 8 digits long and only contains numbers.")
 
-    elif choice == 3:
-        end = True
+        elif choice == '2':
+            if stored_encoded_password:
+                original_password = decode(stored_encoded_password)
+                print(
+                    f"The encoded password is {stored_encoded_password}, and the original password is {original_password}.")
+            else:
+                print("There is no encoded password stored. Please encode a password first.")
 
-    else:
-        print("Invalid selection")
+        elif choice == '3':
+            break
+
+        else:
+            print("Invalid option. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
