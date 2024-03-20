@@ -1,3 +1,6 @@
+#Justin Wild
+#Yazan Al-Hawamdeh
+
 def encode(password):
     return ''.join(str((int(digit) + 3) % 10) for digit in password)
 
