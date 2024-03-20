@@ -23,16 +23,19 @@ while not end:
             return encoded
 
     elif choice == 2:
-        
-        while True:
+        error=False
+        while error==False:
             user_input = password
             if user_input.isdigit() and len(user_input) == 8:
                 break
             else:
                 print("Invalid input. Make sure your password is 8 digits long.")
-        encoded_password = encode_password(user_input)
-        print(f"The original password is {user_input}.")
-        print(f"The encoded password is {encoded_password}.")
+                error=True
+                
+        if error==False:        
+            encoded_password = encode_password(user_input)
+            print(f"The original password is {user_input}.")
+            print(f"The encoded password is {encoded_password}.")
 
     elif choice == 3:
         end = True
