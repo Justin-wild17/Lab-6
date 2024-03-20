@@ -18,20 +18,21 @@ while not end:
     if choice == 1:
         password = input("Please enter your password to encode: ")
         print("Your password has been encoded and stored!")
-
-    elif choice == 2:
-        def decode_password(password):
+        def encode_password(password):
             encoded = ''.join(str((int(digit) + 3) % 10) for digit in password)
             return encoded
+
+    elif choice == 2:
+        
         while True:
             user_input = password
             if user_input.isdigit() and len(user_input) == 8:
                 break
             else:
                 print("Invalid input. Make sure your password is 8 digits long.")
-        decoded_password = decode_password(user_input)
+        encoded_password = encode_password(user_input)
         print(f"The original password is {user_input}.")
-        print(f"The encoded password is {decoded_password}.")
+        print(f"The encoded password is {encoded_password}.")
 
     elif choice == 3:
         end = True
